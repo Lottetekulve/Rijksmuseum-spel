@@ -46,7 +46,7 @@ Bekijk het plaatje en raad de kunstenaar.
 #### Concept 3: Kunst naam raden spel
 Hierbij wil ik kunst uit het rijksmuseum gebruiken.
 
-![](./static/public/raaddekunstenaar.png)
+![](./static/public/img/raaddekunstenaar.png)
 
 In de chat kun je communiceren met de andere spelers.
 Bekijk het plaatje en raad de naam van het kunstwerk in de chat.
