@@ -15,7 +15,7 @@ Als concept wil ik een spel gaan maken.
 #### Concept 1: Memory spel
 Hierbij wil ik kunst uit het rijksmuseum gebruiken.
 
-![](./docs/img/memory.png)
+![](./static/public/img/memory.png)
 
 In de chat kun je communiceren met de andere spelers.
 Klik op een plaatje om hem om te draaien en zoek vervolgens dezelfde.
@@ -31,7 +31,7 @@ Klik op een plaatje om hem om te draaien en zoek vervolgens dezelfde.
 #### Concept 2: Kunstenaar raden spel
 Hierbij wil ik kunst uit het rijksmuseum gebruiken.
 
-![](./docs/img/raaddekunstenaar.png)
+![](./static/public/img/raaddekunstenaar.png)
 
 In de chat kun je communiceren met de andere spelers.
 Bekijk het plaatje en raad de kunstenaar.
@@ -46,7 +46,7 @@ Bekijk het plaatje en raad de kunstenaar.
 #### Concept 3: Kunst naam raden spel
 Hierbij wil ik kunst uit het rijksmuseum gebruiken.
 
-![](./docs/img/raaddekunstenaar.png)
+![](./static/public/img/raaddekunstenaar.png)
 
 In de chat kun je communiceren met de andere spelers.
 Bekijk het plaatje en raad de naam van het kunstwerk in de chat.
