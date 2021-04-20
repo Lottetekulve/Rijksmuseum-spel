@@ -3,6 +3,7 @@ body {
   max-width: 1000px;
   padding: 10px;
   margin: auto;
+  height: 100vh;
 }
 
 main{
@@ -11,9 +12,16 @@ main{
 }
 
 img{
-  width: 500px;
-  height: 500px;
-  margin: auto;
+  max-width: 400px;
+  max-height: 600px;
+}
+
+h1{
+  text-align: center;
+}
+
+h2{
+  text-align: center;
 }
 
 
