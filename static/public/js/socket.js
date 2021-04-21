@@ -46,6 +46,6 @@ socket.on('chat', data => {
 
 socket.on('image', (textandimage) => {
   // console.log(title)
-  picture.src = textandimage.image;
   text.innerText = textandimage.text;
+  picture.src = textandimage.image;
 })
