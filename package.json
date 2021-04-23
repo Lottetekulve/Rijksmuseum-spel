@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Lottetekulve/real-time-web-2021#readme",
   "dependencies": {
+    "env": "0.0.2",
     "express": "^4.17.1",
     "http": "0.0.1-security",
     "node-fetch": "^2.6.1",
