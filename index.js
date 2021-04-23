@@ -9,7 +9,7 @@ const
   routes = require('./router/router'),
   port = process.env.PORT || 5000
   
-  require('dotenv').config();
+  // require('dotenv').config();
 app
   .use(express.static(path.join(__dirname, "static/public")))
   .use(express.json())
