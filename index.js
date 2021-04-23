@@ -28,6 +28,7 @@ server.listen(port, () => {
 io.on('connection', async socket => {
   var i = 0
   socket.on('event', async data => {
+    
     const dataArt = await getArtObjects()
     i = i + 1
       const textandimage = {

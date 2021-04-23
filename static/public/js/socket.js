@@ -22,9 +22,15 @@ form.addEventListener('submit', (e) => {
   }
 })
 
+function clearElement(element) {
+  element.innerHTML = ''
+}
+
 nextButton.addEventListener('submit', submitten => {
   socket.emit('event')
 })
+
+
 
 
 
@@ -65,6 +71,7 @@ socket.on('chat', data => {
 
 
 socket.on('event', (textandimage) => {
+  clearElement(rightAnswer)
   artists.innerText = textandimage.artist;
   text.innerText = textandimage.text;
   picture.src = textandimage.image;
