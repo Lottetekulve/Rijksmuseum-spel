@@ -1,7 +1,7 @@
 # Real-Time Web @cmda-minor-web · 2020/21
 
 # Like link:
-
+https://rijks-game.herokuapp.com/
 
 ## Table of Contents
 - Beschrijving 
@@ -80,17 +80,17 @@ Het werkt zo: Er verschijnt een kunstwerk op je scherm en het scherm van je mede
 - [x] Chat voor antwoorden met namen
 - [x] Api connectie
 - [x] Met socket.io kunstwerken laten zien aan de users
-- [ ] In de chat antwoorden kunnen herkennen
-- [ ] Volgende knop
+- [x] In de chat antwoorden kunnen herkennen
+- [x] Volgende knop
 
 #### Should have:
 - [x] Styles
 - [ ] Database voor gebruikers en antwoorden
-- [ ] Als er een nieuwe gebruiker in het spel komt, niet page reloaden (wat nu wel gebeurd)
+- [x] Als er een nieuwe gebruiker in het spel komt, niet page reloaden (wat nu wel gebeurd)
 
 #### Could have:
 - [ ] Punten telling
-- [ ] Skip knop
+- [x] Skip knop (zelfde als volgende knop geworden)
 - [ ] Rondes
 
 #### Would have:

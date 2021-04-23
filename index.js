@@ -7,7 +7,7 @@ const
   router = require('express').Router(),
   getArtObjects = require('./utils/filterData'),
   routes = require('./router/router'),
-  port = process.env.PORT || 5000
+  port = process.env.PORT || 5001
   
   // require('dotenv').config();
 app
@@ -23,37 +23,46 @@ server.listen(port, () => {
 });
 
 
-// let roomData = {
-//   round: 0,
-//   users: [
-//     {
-//       username: 'dasdsa',
-//       points: 421231,
-//     }
-//   ]
-// }
-
-
+// var i = require('./static/public/js/socket')
 
 io.on('connection', async socket => {
+  var i = 0
+  socket.on('event', async data => {
+    const dataArt = await getArtObjects()
+    i = i + 1
+      const textandimage = {
+        artist: dataArt[0 + i].principalOrFirstMaker,
+        text: dataArt[0 + i].title,
+        image: dataArt[0 + i].webImage.url,
+      } 
+    // console.log(i)
+  io.emit('event', textandimage)
+  })
 
-  const dataArt = await getArtObjects()
-  // console.log(dataArt)
-  const textandimage = {
-    text: dataArt[0].title,
-    image: dataArt[0].webImage.url
-    }
-
-  io.emit('image', textandimage)
-  
   socket.on('chat', data => {
     io.emit('chat', data)
   })
 })
 
+
 app.use(router)
 
+// async function checkAnswer (name, message) {
+//   //get the data from the current album from localstorage
+//   const currentArt = artist
 
+//   //transform both values to lower case to prevent capital
+//   // letters from making an answer wrong
+//   if (message.toLowerCase() === currentArt.name.toLowerCase()) {
+//       addScore(name)
+//       await getArtObjects()
+//       return true
+//   } else {
+//       return false
+//   }
+// }
+
+// checkAnswer()
 
 
 // socket.on('join', data => {

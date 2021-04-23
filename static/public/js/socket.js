@@ -1,15 +1,14 @@
 const socket = io();
-const form = document.querySelector('form')
+const form = document.querySelector('#form1')
+const nextButton = document.querySelector('#form2')
 const username = form.querySelector('input#name')
 const message = form.querySelector('input#message')
 const messages = document.querySelector('#messages')
+const rightAnswer = document.querySelector('#rightAnswer')
 const picture = document.querySelector('img')
 const text = document.querySelector('h2')
+const artists = document.querySelector('h3')
 
-// usernameForm.addEventListener('submit', (e) => {
-//   const name = document.querySelector('input#username')
-//   socket.emit('join', { username: name })
-// })
 
 form.addEventListener('submit', (e) => {
   e.preventDefault()
@@ -23,29 +22,54 @@ form.addEventListener('submit', (e) => {
   }
 })
 
-// socket.on('roomData', data => {
-//   console.log(data.users)
-//   data.users.forEach(user => {
-//   })
-// })
+nextButton.addEventListener('submit', submitten => {
+  socket.emit('event')
+})
+
+
 
 socket.on('chat', data => {
   const el = document.createElement('li')
-  const name = document.createElement('p')
-  const message = document.createElement('p')
+  const name = document.createElement('h4')
+  const guess = document.createElement('p')
   name.innerText = data.name
-  message.innerText = data.message
+  guess.innerText = data.message
   name.classList.add('chat-name')
-  message.classList.add('chat-message')
+  guess.classList.add('chat-message')
   el.classList.add(data.name === username.value ? 'own-message' : 'message')
   el.appendChild(name)
-  el.appendChild(message)
+  el.appendChild(guess)
   messages.appendChild(el)
   messages.scrollTop = messages.scrollHeight
+
+  async function checkAnswer() {
+    const currentArt = artists.textContent
+    const answer = guess.textContent
+    console.log(answer)
+    console.log(currentArt)
+
+    if (answer === currentArt) {
+        return response()
+
+          async function response(){
+            return rightAnswer.textContent = "Someone guessed the right answer!";
+          }
+
+    } else {
+        console.log('false')
+    }
+  }
+
+  checkAnswer()
 })
 
-socket.on('image', (textandimage) => {
-  // console.log(title)
+
+socket.on('event', (textandimage) => {
+  artists.innerText = textandimage.artist;
   text.innerText = textandimage.text;
   picture.src = textandimage.image;
 })
+
+
+
+
