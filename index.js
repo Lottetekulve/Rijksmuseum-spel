@@ -4,10 +4,10 @@ const
   path = require('path'),
   server = require('http').createServer(app),
   io = require('socket.io')(server),
-  router = require('express').Router()
-
-  const getArtObjects = require('./utils/filterData');
-  const routes = require('./router/router');
+  router = require('express').Router(),
+  getArtObjects = require('./utils/filterData'),
+  routes = require('./router/router'),
+  port = process.env.PORT || 5000
   
 app
   .use(express.static(path.join(__dirname, "static/public")))
@@ -17,8 +17,8 @@ app
   .set('view engine', 'ejs')
   .set('views', 'views')
 
-server.listen(4000, () => {
-  console.log('running on port 4000')
+server.listen(port, () => {
+  console.log('listening on port', port)
 });
 
 
