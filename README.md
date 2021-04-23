@@ -77,25 +77,25 @@ Het werkt zo: Er verschijnt een kunstwerk op je scherm en het scherm van je mede
 
 ### Moscow
 #### Must have:
-- [x]Chat voor antwoorden met namen
-- [x]Api connectie
-- [x]Met socket.io kunstwerken laten zien aan de users
-- []In de chat antwoorden kunnen herkennen
-- []Volgende knop
+- [x] Chat voor antwoorden met namen
+- [x] Api connectie
+- [x] Met socket.io kunstwerken laten zien aan de users
+- [ ] In de chat antwoorden kunnen herkennen
+- [ ] Volgende knop
 
 #### Should have:
-- [x]Styles
-- []Database voor gebruikers en antwoorden
-- []Als er een nieuwe gebruiker in het spel komt, niet page reloaden (wat nu wel gebeurd)
+- [x] Styles
+- [ ] Database voor gebruikers en antwoorden
+- [ ] Als er een nieuwe gebruiker in het spel komt, niet page reloaden (wat nu wel gebeurd)
 
 #### Could have:
-- []Punten telling
-- []Skip knop
-- []Rondes
+- [ ] Punten telling
+- [ ] Skip knop
+- [ ] Rondes
 
 #### Would have:
--[]Rooms voor verschillende groepen gebruikers
--[]Filters dat je uit periodes kan kiezen, of uit Nederlandse kunstenaren kunst kiezen.
+- [ ] Rooms voor verschillende groepen gebruikers
+- [ ] Filters dat je uit periodes kan kiezen, of uit Nederlandse kunstenaren kunst kiezen.
 
 ### API
 #### Welke API:
