@@ -105,26 +105,26 @@ Ik heb de Rijksmuseum API gebruikt: https://www.rijksmuseum.nl/api/nl/collection
 ![](./static/public/img/apiInhoud.png)
 
 #### Hoe gebruikt:
-- getData function:
-`const getData = url => {`
-  `return fetch(url)`
-   ` .then(res => res.json())`
-   ` .catch(_ => null)`
+- getData function: <br>
+`const getData = url => {`<br>
+  `return fetch(url)`<br>
+   ` .then(res => res.json())`<br>
+   ` .catch(_ => null)`<br>
 
    `module.exports = getData`
-}
-- filterData function:
-`const artists = ['Johannes Vermeer', 'Rembrandt van Rijn', ``'Vincent van Gogh', 'Karel Appel']`
-`const filteredData = data.artObjects.filter(artObject => {`
-  `  return artists.includes(artObject.principalOrFirstMaker)`
- ` })`
+`}`
+- filterData function:<br>
+`const artists = ['Johannes Vermeer', 'Rembrandt van Rijn', ``'Vincent van Gogh', 'Karel Appel']`<br>
+`const filteredData = data.artObjects.filter(artObject => {`<br>
+  `  return artists.includes(artObject.principalOrFirstMaker)`<br>
+ ` })`<br>
   `return filteredData`
-- sortData function:
-`const sortedArtObjects = data.sort(() => .5 - Math.random())`
+- sortData function:<br>
+`const sortedArtObjects = data.sort(() => .5 - Math.random())`<br>
  `return sortedArtObjects`
-- socket.io filteredData sturen naar alle users:
-`socket.on('image', (textandimage) => {`
- ` text.innerText = textandimage.text;`
+- socket.io filteredData sturen naar alle users:<br>
+`socket.on('image', (textandimage) => {` <br>
+ ` text.innerText = textandimage.text;`<br>
  ` picture.src = textandimage.image;`
 `})`
 
@@ -141,19 +141,19 @@ Nadat je een account hebt aangemaakt, ga je naar je account, naar instellingen e
 
 
 #### Real-Time Events
-- Connection: 
+- Connection: <br>
 `io.on('connection', async socket => {`
-- Image sturen:
-`const dataArt = await getArtObjects()`
- ` const textandimage = {`
-  `  text: dataArt[0].title,`
-   ` image: dataArt[0].webImage.url`
-   ` }`
+- Image sturen:<br>
+`const dataArt = await getArtObjects()`<br>
+ ` const textandimage = {`<br>
+  `  text: dataArt[0].title,`<br>
+   ` image: dataArt[0].webImage.url`<br>
+   ` }`<br>
   `io.emit('image', textandimage)`
-- Messages sturen:
- `socket.on('chat', data => {`
+- Messages sturen:<br>
+ `socket.on('chat', data => {`<br>
     `io.emit('chat', data)`
-- Antwoord en volgende image:
+- Antwoord en volgende image:<br>
 
 ### Data Lifecycle Diagram
 
