@@ -132,8 +132,6 @@ Ik heb de Rijksmuseum API gebruikt: https://www.rijksmuseum.nl/api/nl/collection
 #### API key:
 Je kunt op de website van het rijksmuseum een account aanmaken en dan wordt de API key naar je opgestuurd in een mail.
 
-<br>
-
 Gebruik hiervoor deze twee websites: 
 - Algemene API info: https://data.rijksmuseum.nl/object-metadata/api/
 - Account aanmaken voor API key: https://www.rijksmuseum.nl/nl/registreer
