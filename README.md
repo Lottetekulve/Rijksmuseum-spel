@@ -103,7 +103,7 @@ Het werkt zo: Er verschijnt een kunstwerk op je scherm en het scherm van je mede
 Ik heb de Rijksmuseum API gebruikt: https://www.rijksmuseum.nl/api/nl/collection/?key=7TAeATmh
 
 #### API Inhoud:
-![](./static/public/img/apiInhoud.png)
+![](./static/public/img/apidata.png)
 
 #### Hoe gebruikt:
 - getData function: <br>
@@ -141,18 +141,25 @@ Nadat je een account hebt aangemaakt, ga je naar je account, naar instellingen e
 
 #### Real-Time Events
 - Connection: <br>
-`io.on('connection', async socket => {`
+```
+io.on('connection', async socket => {
+```
 - Image sturen:<br>
-`const dataArt = await getArtObjects()`<br>
- ` const textandimage = {`<br>
-  `  text: dataArt[0].title,`<br>
-   ` image: dataArt[0].webImage.url`<br>
-   ` }`<br>
-  `io.emit('image', textandimage)`
-- Messages sturen:<br>
- `socket.on('chat', data => {`<br>
-    `io.emit('chat', data)`
-- Antwoord en volgende image:<br>
+```
+const dataArt = await getArtObjects()
+  const textandimage = { 
+   text: dataArt[0].title,
+    image: dataArt[0].webImage.url 
+    } 
+  io.emit('image', textandimage) 
+```
+- Messages sturen:
+```
+ socket.on('chat', data => {
+  io.emit('chat', data)
+
+```
+- Antwoord en volgende image:
 
 ### Data Lifecycle Diagram
 ![](./static/public/img/datalifecycle.png)
