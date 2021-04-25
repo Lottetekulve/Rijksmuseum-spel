@@ -40,7 +40,7 @@ io.on('connection', async socket => {
   io.emit('event', textandimage)
   })
 
-  socket.on('chat', data => {
+  socket.on('chat', data => { 
     io.emit('chat', data)
   })
 })

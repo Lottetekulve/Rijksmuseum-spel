@@ -86,7 +86,8 @@ Het werkt zo: Er verschijnt een kunstwerk op je scherm en het scherm van je mede
 #### Should have:
 - [x] Styles
 - [ ] Database voor gebruikers en antwoorden
-- [x] Als er een nieuwe gebruiker in het spel komt, niet page reloaden (wat nu wel gebeurd)
+- [ ] Naam niet verwijderen wanneer je op volgende klikt
+- [x] Als er een nieuwe gebruiker in het spel komt, niet page reloaden (wat hiervoor wel gebeurde)
 
 #### Could have:
 - [ ] Punten telling
@@ -154,7 +155,7 @@ Nadat je een account hebt aangemaakt, ga je naar je account, naar instellingen e
 - Antwoord en volgende image:<br>
 
 ### Data Lifecycle Diagram
-
+![](./static/public/img/datalifecycle.png)
 
 ### Used Packages
 - express
