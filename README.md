@@ -106,28 +106,36 @@ Ik heb de Rijksmuseum API gebruikt: https://www.rijksmuseum.nl/api/nl/collection
 ![](./static/public/img/apidata.png)
 
 #### Hoe gebruikt:
-- getData function: <br>
-`const getData = url => {`<br>
-  `return fetch(url)`<br>
-   ` .then(res => res.json())`<br>
-   ` .catch(_ => null)`<br>
+- getData function: 
+```
+const getData = url => {
+  return fetch(url)
+    .then(res => res.json())
+    .catch(_ => null)
 
-   `module.exports = getData`
-`}`
-- filterData function:<br>
-`const artists = ['Johannes Vermeer', 'Rembrandt van Rijn', ``'Vincent van Gogh', 'Karel Appel']`<br>
-`const filteredData = data.artObjects.filter(artObject => {`<br>
-  `  return artists.includes(artObject.principalOrFirstMaker)`<br>
- ` })`<br>
-  `return filteredData`
-- sortData function:<br>
-`const sortedArtObjects = data.sort(() => .5 - Math.random())`<br>
- `return sortedArtObjects`
-- socket.io filteredData sturen naar alle users:<br>
-`socket.on('image', (textandimage) => {` <br>
- ` text.innerText = textandimage.text;`<br>
- ` picture.src = textandimage.image;`
-`})`
+   module.exports = getData
+}
+```
+- filterData function:
+```
+const artists = ['Johannes Vermeer', 'Rembrandt van Rijn', 'Vincent van Gogh', 'Karel Appel']
+const filteredData = data.artObjects.filter(artObject => {
+  return artists.includes(artObject.principalOrFirstMaker)
+ })
+  return filteredData
+```
+- sortData function:
+```
+const sortedArtObjects = data.sort(() => .5 - Math.random())
+ return sortedArtObjects
+```
+- socket.io filteredData sturen naar alle users:
+```
+socket.on('image', (textandimage) => { 
+text.innerText = textandimage.text;
+picture.src = textandimage.image;
+})
+```
 
 
 #### API key:
@@ -157,7 +165,6 @@ const dataArt = await getArtObjects()
 ```
  socket.on('chat', data => {
   io.emit('chat', data)
-
 ```
 - Antwoord en volgende image:
 
@@ -181,9 +188,18 @@ Install:
 
 
 ### Install project
-1. clone repo: `https://github.com/Lottetekulve/Rijksmuseum-spel.git`
-2. Install used packages: `npm install`
-3. Start op het web: `npm run dev`
+1. clone repo: 
+``` 
+https://github.com/Lottetekulve/Rijksmuseum-spel.git
+```
+2. Install used packages: 
+```
+npm install
+```
+3. Start op het web: 
+```
+npm run dev
+```
 4. Te vinden op: http://localhost:4000/
 
 ### License
