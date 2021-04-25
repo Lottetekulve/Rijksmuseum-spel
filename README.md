@@ -103,7 +103,20 @@ Het werkt zo: Er verschijnt een kunstwerk op je scherm en het scherm van je mede
 Ik heb de Rijksmuseum API gebruikt: https://www.rijksmuseum.nl/api/nl/collection/?key=7TAeATmh
 
 #### API Inhoud:
-![](./static/public/img/apidata.png)
+```
+"artObjects": [
+  {
+    "links": {}                     // link naar item op rijkmuseum website en in de api
+    "id":                           // combinatie van collectie en objectnummer 
+    "objectNumber":                 // nummer en cijfer combinatie
+    "title": "Bureau",              // korte titel     
+    "principalOrFirstMaker":        // orginele kunstenaar
+    "longTitle":                    // lange titel van het kunstwerk
+    "webImage": {}                  // Image met url en afmetingen
+    "headerImage": {}               // Image in header grootte met url en afmetingen
+    "productionPlaces": []          // Plek(ken) waar het kunstwerk gemaakt is
+  }
+```
 
 #### Hoe gebruikt:
 - getData function: 
@@ -132,8 +145,8 @@ const sortedArtObjects = data.sort(() => .5 - Math.random())
 - socket.io filteredData sturen naar alle users:
 ```
 socket.on('image', (textandimage) => { 
-text.innerText = textandimage.text;
-picture.src = textandimage.image;
+  text.innerText = textandimage.text;
+  picture.src = textandimage.image;
 })
 ```
 
