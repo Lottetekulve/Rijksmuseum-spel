@@ -12,6 +12,7 @@ const artists = document.querySelector('h3')
 
 
 form.addEventListener('submit', (e) => {
+  clearElement(disconnected)
   e.preventDefault()
   if (message.value) {
     socket.emit('chat', {
@@ -33,13 +34,6 @@ nextButton.addEventListener('submit', (e) => {
   e.preventDefault()
   socket.emit('event')
 })
-
-// leave.addEventListener('submit', (e) => {
-//   e.preventDefault()
-//   socket.emit('disconnect')
-// })
-
-
 
 
 
@@ -81,6 +75,7 @@ socket.on('chat', data => {
 
 socket.on('event', (textandimage) => {
   clearElement(rightAnswer)
+  clearElement(disconnected)
   artists.innerText = textandimage.artist;
   text.innerText = textandimage.text;
   picture.src = textandimage.image;
