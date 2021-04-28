@@ -7,9 +7,11 @@ const
   router = require('express').Router(),
   // getArtObjects = require('./utils/filterData'),
   routes = require('./router/router'),
-  port = process.env.PORT || 4000
+  port = process.env.PORT || 4000 ,
+  // LocalStorage = require('node-localstorage').LocalStorage
+  getData = require('./utils/getData')
   
-  // require('dotenv').config();
+
 app
   .use(express.static(path.join(__dirname, "static/public")))
   .use(express.json())
@@ -24,8 +26,6 @@ server.listen(port, () => {
 
 
 
-
-const getData = require('./utils/getData')
 
 const artists = ['Johannes Vermeer', 'Rembrandt van Rijn', 'Vincent van Gogh', 'Karel Appel', 'Jeroen Bosch', 'Pieter Brueghel', 'Mondriaan']
 
@@ -64,11 +64,13 @@ io.on('connection', async socket => {
     else {
       i = i + 1
     }
-      const textandimage = {
-        artist: dataArt[i].principalOrFirstMaker,
-        text: dataArt[i].title,
-        image: dataArt[i].webImage.url,
-      } 
+
+    const textandimage = {
+      artist: dataArt[i].principalOrFirstMaker,
+      text: dataArt[i].title,
+      image: dataArt[i].webImage.url
+    } 
+  
     console.log(i)
   io.emit('event', textandimage)
   })
@@ -78,10 +80,9 @@ io.on('connection', async socket => {
   })
 
   socket.on('disconnect', data => {
-    io.emit('disconnect', data)
+    io.emit('disconnected', data)
   })
 })
 
 
 app.use(router)
-

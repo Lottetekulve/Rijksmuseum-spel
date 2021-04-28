@@ -85,18 +85,18 @@ Het werkt zo: Er verschijnt een kunstwerk op je scherm en het scherm van je mede
 
 #### Should have:
 - [x] Styles
-- [ ] Database voor gebruikers en antwoorden
-- [ ] Naam niet verwijderen wanneer je op volgende klikt
+- [x] Automatisch volgende bij goed antwoord
+- [x] Punten telling
+- [x] Naam niet verwijderen wanneer je op volgende klikt
 - [x] Als er een nieuwe gebruiker in het spel komt, niet page reloaden (wat hiervoor wel gebeurde)
 
 #### Could have:
-- [ ] Punten telling
-- [x] Skip knop (zelfde als volgende knop geworden)
+- [ ] Database voor gebruikers en antwoorden
 - [ ] Rondes
 
 #### Would have:
 - [ ] Rooms voor verschillende groepen gebruikers
-- [ ] Filters dat je uit periodes kan kiezen, of uit Nederlandse kunstenaren kunst kiezen.
+- [ ] Filters, bijvoorbeeld alles uit de jaren 1800-1900
 
 ### API
 #### Welke API:
