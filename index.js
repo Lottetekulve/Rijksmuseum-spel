@@ -5,9 +5,9 @@ const
   server = require('http').createServer(app),
   io = require('socket.io')(server),
   router = require('express').Router(),
-  getArtObjects = require('./utils/filterData'),
+  // getArtObjects = require('./utils/filterData'),
   routes = require('./router/router'),
-  port = process.env.PORT || 5001
+  port = process.env.PORT || 4000
   
   // require('dotenv').config();
 app
@@ -23,52 +23,65 @@ server.listen(port, () => {
 });
 
 
-// var i = require('./static/public/js/socket')
+
+
+const getData = require('./utils/getData')
+
+const artists = ['Johannes Vermeer', 'Rembrandt van Rijn', 'Vincent van Gogh', 'Karel Appel', 'Jeroen Bosch', 'Pieter Brueghel', 'Mondriaan']
+
+const filterData = async () => {
+    const endpoint = 'https://www.rijksmuseum.nl/api/nl/collection/?key=7TAeATmh&p=1&ps=100'
+    const data = await getData(endpoint)
+    const filteredData = data.artObjects.filter(artObject => {
+    return artists.includes(artObject.principalOrFirstMaker)
+  })
+  return filteredData
+}
+
+filterData()
+
+let dataArt
+const getArtObjects = async () => {
+  const data = await filterData()
+  const data2 = data.sort(() => .5 - Math.random())
+
+  dataArt = data2
+  return dataArt
+}
+
+getArtObjects()
+  .then( () => console.log('laden'))
+
+let i = 0;
+
 
 io.on('connection', async socket => {
-  var i = 0
-  socket.on('event', async data => {
-    
-    const dataArt = await getArtObjects()
-    i = i + 1
+
+  socket.on('event', () => {
+    if( i >= dataArt.length - 1) {
+      i = 0
+    }
+    else {
+      i = i + 1
+    }
       const textandimage = {
-        artist: dataArt[0 + i].principalOrFirstMaker,
-        text: dataArt[0 + i].title,
-        image: dataArt[0 + i].webImage.url,
+        artist: dataArt[i].principalOrFirstMaker,
+        text: dataArt[i].title,
+        image: dataArt[i].webImage.url,
       } 
-    // console.log(i)
+    console.log(i)
   io.emit('event', textandimage)
   })
 
   socket.on('chat', data => { 
     io.emit('chat', data)
   })
+
+  socket.on('disconnect', data => {
+    io.emit('disconnect', data)
+  })
 })
 
 
 app.use(router)
 
-// async function checkAnswer (name, message) {
-//   //get the data from the current album from localstorage
-//   const currentArt = artist
-
-//   //transform both values to lower case to prevent capital
-//   // letters from making an answer wrong
-//   if (message.toLowerCase() === currentArt.name.toLowerCase()) {
-//       addScore(name)
-//       await getArtObjects()
-//       return true
-//   } else {
-//       return false
-//   }
-// }
-
-// checkAnswer()
-
-
-// socket.on('join', data => {
-  //   roomData.users.push(data.username)
-  //   io.emit('roomData', roomData)
-  // })
-
-  // artObjects[roomData.round]

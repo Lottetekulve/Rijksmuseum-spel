@@ -34,16 +34,16 @@ const filterData = async () => {
 filterData()
 
 
-const getArtObjects = async () => {
+const getArtObjects = async (dataArt) => {
   // const endpoint = 'https://www.rijksmuseum.nl/api/nl/collection/?key=7TAeATmh&ps=200'
   const data = await filterData()
-  const sortedArtObjects = data.sort(() => .5 - Math.random())
+  const data2 = data.sort(() => .5 - Math.random())
 
+  dataArt = data2
 //   console.log(sortedArtObjects)
-  return sortedArtObjects
+  // console.log(data2)
+  return dataArt
 
 }
-
-getArtObjects()
 
 module.exports = getArtObjects
