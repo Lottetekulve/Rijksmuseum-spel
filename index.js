@@ -5,10 +5,8 @@ const
   server = require('http').createServer(app),
   io = require('socket.io')(server),
   router = require('express').Router(),
-  // getArtObjects = require('./utils/filterData'),
   routes = require('./router/router'),
   port = process.env.PORT || 4000 ,
-  // LocalStorage = require('node-localstorage').LocalStorage
   getData = require('./utils/getData')
   
 
@@ -26,9 +24,11 @@ server.listen(port, () => {
 
 
 
-
+// gekozen kunstenaars voor filter
 const artists = ['Johannes Vermeer', 'Rembrandt van Rijn', 'Vincent van Gogh', 'Karel Appel', 'Jeroen Bosch', 'Pieter Brueghel', 'Mondriaan']
 
+
+// filter functie
 const filterData = async () => {
     const endpoint = 'https://www.rijksmuseum.nl/api/nl/collection/?key=7TAeATmh&p=1&ps=100'
     const data = await getData(endpoint)
@@ -40,6 +40,7 @@ const filterData = async () => {
 
 filterData()
 
+// random sort functie
 let dataArt
 const getArtObjects = async () => {
   const data = await filterData()
@@ -49,15 +50,18 @@ const getArtObjects = async () => {
   return dataArt
 }
 
+
 getArtObjects()
   .then( () => console.log('laden'))
 
+// waarde van i instellen voor doorloopen van de artobjects
 let i = 0;
 
-
+// on connection
 io.on('connection', async socket => {
 
-  socket.on('event', () => {
+  // maakt data aan dat naar client wordt gestuurd 
+  socket.on('showData', () => {
     if( i >= dataArt.length - 1) {
       i = 0
     }
@@ -65,6 +69,7 @@ io.on('connection', async socket => {
       i = i + 1
     }
 
+    // data voor op de client
     const textandimage = {
       artist: dataArt[i].principalOrFirstMaker,
       text: dataArt[i].title,
@@ -72,13 +77,15 @@ io.on('connection', async socket => {
     } 
   
     console.log(i)
-  io.emit('event', textandimage)
+  io.emit('showData', textandimage)
   })
 
+  // chat
   socket.on('chat', data => { 
     io.emit('chat', data)
   })
 
+  // disconnect
   socket.on('disconnect', data => {
     io.emit('disconnected', data)
   })

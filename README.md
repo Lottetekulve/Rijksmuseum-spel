@@ -17,8 +17,7 @@ https://rijks-game.herokuapp.com/
 - Data Lifecycle Diagram
 - Used Packages
 - Install project
-- License
-- Sources
+
 
 ### Beschrijving
 Voor dit vak gaan we een socket app maken. Hierbij moet je een aantal concepten bedenken, een API gebruiken en realtime communicatie gebruiken. 
@@ -72,8 +71,16 @@ Bekijk het plaatje en raad de naam van het kunstwerk in de chat.
 - Chat herken antwoorden
 
 ### Gekozen concept
+![](./static/public/img/spel.png)
 Ik heb gekozen voor concept 2, raad je kunstenaar.
 Het werkt zo: Er verschijnt een kunstwerk op je scherm en het scherm van je medespelers. Wie als eerste de goede kunstenaar raad in de chat wint. Wanneer het goede antwoord gegeven is, verschijnt er een nieuw kunstwerk en begint het spel opnieuw.
+Het idee is dat dit gespeeld wordt door kunstliefhebbers, aangezien het soms best een moeilijk spel kan zijn.
+#### Features:
+- punten per gebruiker
+- chat
+- goed antwoord message
+- volgende knop
+- nieuwe image wanneer goed antwoord
 
 ### Moscow
 #### Must have:
@@ -162,10 +169,12 @@ Nadat je een account hebt aangemaakt, ga je naar je account, naar instellingen e
 
 #### Real-Time Events
 - Connection: <br>
+Wanneer de webpagina wordt geopent, wordt er een connectie gemaakt met socket.io. Dit event roept alle andere real time events aan, showData, chat en disconnect.
 ```
 io.on('connection', async socket => {
 ```
 - Image sturen:<br>
+showData zorgt er voor dat de image, titel en kunstenaar gestuurd worden naar alle servers.
 ```
 const dataArt = await getArtObjects()
   const textandimage = { 
@@ -175,11 +184,22 @@ const dataArt = await getArtObjects()
   io.emit('image', textandimage) 
 ```
 - Messages sturen:
+Het chat event zorgt er voor dat de alle berichten en usernames, naar alle servers worden gestuud. Binnen in deze functie wordt ook gekeken of het verstuurde bericht het goede antwoord is. Wanneer dit het geval is dan wordt er een bericht gestuurd dat het goede antwoord is geraden en komt er automatisch een nieuwe afbeelding. Ook worden hier punten gegeven wanneer je het goede antwoord hebt geraden.
 ```
  socket.on('chat', data => {
   io.emit('chat', data)
 ```
 - Antwoord en volgende image:
+Ik heb ook een volgende knop gemaakt voor als niemand het antwoord weet, deze valt onder het showData event. Er wordt dan een bericht gestuurd met, dit was het antwoord.
+
+- Disconnect:
+Wanneer iemand het spel verlaat wordt er een bericht getoont dat een speler het spel verlaten heeft.
+```
+socket.on('disconnected', () => {
+  return userLeft.textContent = "Een speler heeft het spel verlaten";
+})
+```
+
 
 ### Data Lifecycle Diagram
 ![](./static/public/img/datalifecycle.png)
@@ -215,8 +235,7 @@ npm run dev
 ```
 4. Te vinden op: http://localhost:4000/
 
-### License
-### Sources
+
 
 <!-- Add a nice image here at the end of the week, showing off your shiny frontend 📸 -->
 

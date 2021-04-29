@@ -15,10 +15,14 @@ const artists = document.querySelector('h3')
 const bName = document.querySelector('#bname')
 const bScore = document.querySelector('#bscore')
 
+
+//clear element voor goed en verlaat messages
 function clearElement(element) {
   element.innerHTML = ''
 }
 
+
+//event lisnter voor chat knop
 form.addEventListener('submit', (e) => {
   clearElement(userLeft)
   clearElement(rightAnswer)
@@ -33,8 +37,12 @@ form.addEventListener('submit', (e) => {
     message.value = ''
   }
 })
+
+// let points voor punten van de gebruikers
 let points = 0
 
+
+// chat maken
 socket.on('chat', data => {
   const el = document.createElement('li')
   const name = document.createElement('h4')
@@ -49,12 +57,13 @@ socket.on('chat', data => {
   messages.appendChild(el)
   messages.scrollTop = messages.scrollHeight
 
+
+  //checkt of het antwoord goed is
   async function checkAnswer() {
     const currentArt = artists.textContent
     const answer = guess.textContent
-    // console.log(answer)
-    // console.log(currentArt)
 
+    // als answer gelijk is aan current art dan functie next + 1 point
     if (answer.toLowerCase() === currentArt.toLowerCase()) {
       points = points + 1
       return next() 
@@ -66,30 +75,29 @@ socket.on('chat', data => {
 
   checkAnswer()
 
-
+  // maak local storage variabele aan
   const newLeaderBoard = {
     name: data.name,
     points: points
   }
 
-localStorage.setItem('leaderBoard', JSON.stringify(newLeaderBoard))
-const leaderBoard = JSON.parse(localStorage.getItem('leaderBoard'))
+  // set in local storage en haal weer op
+  localStorage.setItem('leaderBoard', JSON.stringify(newLeaderBoard))
+  const leaderBoard = JSON.parse(localStorage.getItem('leaderBoard'))
 
-boardName = leaderBoard.name
-boardScore = leaderBoard.points
+  boardName = leaderBoard.name
+  boardScore = leaderBoard.points
 
-bName.textContent = boardName
-bScore.textContent = boardScore
-
+  // set waardes in html
+  bName.textContent = boardName
+  bScore.textContent = boardScore
 })
 
 
-
-
-
+// voor de startbutton in het begin van het spel en maakt volgende button aan ipv start button
 startButton.addEventListener('submit', (e) => {
   e.preventDefault()
-  socket.emit('event')
+  socket.emit('showData')
   startButton.style.display = 'none'
   const nextText = document.createElement('p')
   const nextButton = document.createElement('button')
@@ -99,21 +107,24 @@ startButton.addEventListener('submit', (e) => {
   form2.appendChild(nextButton)
 })
 
+// volgende button met next van image functie
 nextButton.addEventListener('submit', (e) => {
   const currentArtist = artists.textContent
   nextAnswer.textContent = 'Het juiste antwoord was ' + currentArtist
   messages.appendChild(nextAnswer)
   clearElement(rightAnswer)
   e.preventDefault()
-  socket.emit('event')
+  socket.emit('showData')
 })
 
+// wanneer goede antwoord geraden is, en nieuwe image uitvoeren
 function next(){
-  rightAnswer.textContent = "Someone guessed the right answer!"
-  socket.emit('event')
+  rightAnswer.textContent = "Het goede antwoord is geraden!"
+  socket.emit('showData')
 }
 
-socket.on('event', (textandimage) => {
+// zet image en text in de html
+socket.on('showData', (textandimage) => {
   clearElement(userLeft)
   artists.innerText = textandimage.artist;
   text.innerText = textandimage.text;
@@ -121,30 +132,9 @@ socket.on('event', (textandimage) => {
 })
 
 
-
+// wanneer een gebruiker disconnects of de pagina sluit.
 socket.on('disconnected', () => {
-  return userLeft.textContent = "Someone left the game!";
+  return userLeft.textContent = "Een speler heeft het spel verlaten";
 })
 
 
-
-
-
-
-// function addScore (name) {
-
-//   const leaderBoard = JSON.parse(localStorage.getItem('leaderBoard'))
-
-//   const user = leaderBoard.find((user) => user.name === name)
-
-//   //place all other users in a new array
-//   const otherUsers = leaderBoard.filter((user) => user.name !== name)
-
-//   // const newLeaderBoard = [...otherUsers, {
-//   //     name: name,
-//   //     score: user ? user.score + 1 : 1
-//   // }]
-//   // const sortedLeaderBoard = newLeaderBoard.sort((a, b) => b.score - a.score)
-
-//   // return localStorage.setItem('leaderBoard', JSON.stringify(newLeaderBoard))
-// }

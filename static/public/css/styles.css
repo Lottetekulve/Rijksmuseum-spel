@@ -1,3 +1,5 @@
+/* body main sections */
+
 body {
   background-color: #f2ecda;
   max-width: 1000px;
@@ -28,6 +30,7 @@ section:nth-child(2){
 }
 
 
+/* responsive maken */
 @media (min-width: 950px){
   section:nth-child(1){
     margin: auto;
@@ -55,6 +58,8 @@ section:nth-child(2){
   }
 }
 
+
+/* images en tekst  */
 img{
   max-width: 100%;
   margin: auto;
@@ -106,6 +111,8 @@ p#userjoin{
   margin: 0;
 }
 
+
+/* section chat */
 #chat {
   color: #f2ecda;
   background-color: #48423c;
@@ -171,6 +178,8 @@ p#userjoin{
   box-shadow: -3px 3px 3px rgba(0, 0, 0, 0.25);
 }
 
+
+/* formulieren */
 #form3 button {
   font-size: 30px;
 }
@@ -184,6 +193,8 @@ p#userjoin{
   text-align: center;
   margin: 20px 0 0 0;
 }
+
+/* div  */
 
 div {
   color: #f2ecda;
